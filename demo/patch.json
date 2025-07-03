@@ -1,0 +1,11 @@
+{
+  "app": {
+    "bundleName": "com.gikkiares.pathlib",
+    "patchVersionCode": 2000026,
+    "versionCode": 1000000
+  },
+  "module": {
+    "name": "demo",
+    "type": "hotreload"
+  }
+}

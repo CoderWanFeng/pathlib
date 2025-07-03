@@ -1,0 +1,53 @@
+{
+  "app": {
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "4.1.0(11)",
+        "runtimeOS": "HarmonyOS"
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug"
+      },
+      {
+        "name": "release"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\gikki\\.ohos\\config\\default_PathLibArkts_JGu2KTBja29tO9qgBbnM7bsE8v5Va30ydmBIWpKRStk=.cer",
+          "storePassword": "0000001BD9F8CFAD73C5127639DF549EE1A8B25307BBF153D6B7DE52DBF421DB4DD8BC9D7D61C21E445058",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B39D41425BF7728D1628B7EB310C1FF9AE7E9CA7D1CFCE2D4F09929C8A968A21FB77D007582AC7D",
+          "profile": "C:\\Users\\gikki\\.ohos\\config\\default_PathLibArkts_JGu2KTBja29tO9qgBbnM7bsE8v5Va30ydmBIWpKRStk=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\gikki\\.ohos\\config\\default_PathLibArkts_JGu2KTBja29tO9qgBbnM7bsE8v5Va30ydmBIWpKRStk=.p12"
+        }
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "demo",
+      "srcPath": "./demo",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "pathlib",
+      "srcPath": "./pathlib",
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PdfReader</title>
+    <style>
+        #pdf-container {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div id="pdf-container"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.js"></script>
+<script>
+    // 指定工作线程脚本的路径
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.js';
+
+    // 获取容器元素
+    var container = document.getElementById('pdf-container');
+
+    // 加载PDF文档
+    pdfjsLib.getDocument('ArktsUi.pdf').promise.then(function(pdf) {
+        const numPages = pdf.numPages
+
+
+        let lastPromise = pdf.getMetadata().then(metadata => {
+            // console.log('metadata  = ', metadata)
+            // console.log('Metadata is:', JSON.stringify(metadata, null, 2))
+            if(metadata.metadata) {
+                // console.log('All Metadata:', metadata.metadata.getAll())
+            }
+        })
+
+        const loadPage = (pageNum) => {
+            return pdf.getPage(pageNum).then(page => {
+                // console.log('# Page ' + pageNum)
+
+                const viewport = page.getViewport({ scale: 1.0 })
+                // console.log('size = ', viewport.width + 'x' + viewport.height)
+
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                container.appendChild(canvas);
+                page.render({ canvasContext: context, viewport})
+
+                // return page.getTextContent().then(content => {
+                //     const strings = content.items.map(item => {
+                //         // console.log('content item:', item)
+                //         return (item as any).str
+                //     })
+                //     // console.log('## Text Content:', strings.join(' '))
+                //     page.cleanup()
+                // })
+                container.appendChild(canvas);
+            })
+        }
+        for(let i = 1; i <= numPages; i++) {
+            lastPromise = lastPromise.then(loadPage.bind(null, i))
+        }
+        return lastPromise
+
+        // 获取第一页
+        pdf.getPage(1).then(function(page) {
+            var scale = 1.5;
+            var viewport = page.getViewport({ scale: scale });
+
+            // 创建一个<canvas>元素用于显示PDF页面
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            canvas.width = viewport.width;
+            canvas.height = viewport.height;
+
+            // 将PDF页面渲染到<canvas>元素中
+            page.render({
+                canvasContext: context,
+                viewport: viewport
+            });
+
+            // 将<canvas>元素添加到容器中
+            container.appendChild(canvas);
+        });
+    });
+</script>
+</body>
+</html>

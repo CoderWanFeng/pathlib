@@ -1,0 +1,13 @@
+build
+oh_modules/
+.hvigor/
+.idea/
+.clang-format
+/node_modules
+/local.properties
+**/build
+.cxx
+/.clangd
+/.clang-tidy
+**/.test
+

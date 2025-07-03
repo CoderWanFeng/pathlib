@@ -1,0 +1,10 @@
+{
+  "app": {
+    "bundleName": "com.gikkiares.pathlib",
+    "vendor": "example",
+     "versionCode": 1000000,
+    "versionName": "1.0.0",
+    "icon": "$media:utility",
+    "label": "$string:app_name"
+  }
+}
